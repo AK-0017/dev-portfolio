@@ -42,7 +42,7 @@ export default function ContactPreview() {
 
         {/* Email Button */}
         <a
-          href="mailto:your@email.com"
+          href="/contact"
           className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium text-sm md:text-base rounded-xl shadow-md hover:shadow-blue-600/40 transition duration-300"
         >
           <Mail className="w-5 h-5" />
@@ -56,11 +56,11 @@ export default function ContactPreview() {
             icon={<Github className="w-5 h-5" />}
           />
           <SocialIcon
-            href="https://linkedin.com/in/your-profile"
+            href="https://www.linkedin.com/in/atharva-kulkarni-5321b2328/"
             icon={<Linkedin className="w-5 h-5" />}
           />
           <SocialIcon
-            href="https://instagram.com/your-handle"
+            href="https://instagram.com/ak_mere_khwab"
             icon={<Instagram className="w-5 h-5" />}
           />
         </div>
