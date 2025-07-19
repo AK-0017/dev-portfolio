@@ -1,11 +1,9 @@
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
-  // ✅ Disable ESLint errors from failing the build
   eslint: {
-    ignoreDuringBuilds: true,
+    ignoreDuringBuilds: true, // ✅ This is the key line
   },
-
   images: {
     remotePatterns: [
       {
@@ -14,7 +12,7 @@ const nextConfig: NextConfig = {
         pathname: '/**',
       },
     ],
-    dangerouslyAllowSVG: true, // Only if you trust the source!
+    dangerouslyAllowSVG: true,
   },
 };
 
