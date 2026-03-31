@@ -1,14 +1,19 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
-const TAGS = [
-  "Next.js", "MongoDB", "Python", "Founder", "Mumbai India", "Open to internships"
-];
+const DEFAULT_TAGS = ["Next.js", "MongoDB", "Python", "Founder", "Mumbai India"];
 
 export default function Who() {
   const [time, setTime] = useState("");
 
+  const [settings, setSettings] = useState({ isAvailable: true, resumeUrl: "" });
+
   useEffect(() => {
+    fetch("/api/settings")
+      .then(res => res.json())
+      .then(data => setSettings(data))
+      .catch(err => console.error(err));
+
     const update = () => {
       setTime(new Date().toLocaleTimeString("en-US", { 
         hour12: false, 
@@ -76,7 +81,7 @@ export default function Who() {
           {[
             { label: "Founder", val: "AuthVerse" },
             { label: "Developer", val: "BYKBangles" },
-            { label: "Builder", val: "ZD550 Drone" },
+            { label: "Builder", val: "Drone" },
             { label: "Writer", val: "Almost Alive" },
           ].map((item, i) => (
             <motion.div
@@ -98,11 +103,24 @@ export default function Who() {
           transition={{ duration: 1, delay: 0.8 }}
           className="flex flex-wrap justify-center gap-3"
         >
-          {TAGS.map((tag) => (
+          {DEFAULT_TAGS.map((tag) => (
             <span key={tag} className="text-[10px] font-mono text-gold border border-gold/20 bg-gold/5 px-5 py-2 rounded-full uppercase tracking-widest hover:bg-gold hover:text-black transition-all cursor-default">
               {tag}
             </span>
           ))}
+          <span className={`text-[10px] font-mono border px-5 py-2 rounded-full uppercase tracking-widest flex items-center gap-2 ${settings.isAvailable ? 'text-green-500 border-green-500/20 bg-green-500/5' : 'text-gold/40 border-gold/10 bg-white/5'}`}>
+            <div className={`w-1.5 h-1.5 rounded-full ${settings.isAvailable ? 'bg-green-500 animate-pulse' : 'bg-gold/20'}`} />
+            {settings.isAvailable ? "Open to Opportunities" : "Currently Building"}
+          </span>
+          {settings.resumeUrl && (
+            <a 
+              href={settings.resumeUrl} 
+              target="_blank" 
+              className="text-[10px] font-mono text-black bg-gold px-5 py-2 rounded-full uppercase tracking-widest hover:bg-white transition-all shadow-[0_0_20px_rgba(255,184,0,0.2)]"
+            >
+              Download Dossier
+            </a>
+          )}
         </motion.div>
       </div>
     </section>

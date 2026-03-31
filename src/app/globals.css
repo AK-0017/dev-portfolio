@@ -16,6 +16,13 @@
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-bebas-neue), sans-serif;
   --font-mono: var(--font-fira-code), monospace;
+
+  --animate-shimmer: shimmer 2s infinite;
+
+  @keyframes shimmer {
+    from { transform: translateX(-100%); }
+    to { transform: translateX(100%); }
+  }
 }
 
 @layer base {
@@ -49,3 +56,4 @@ html {
 ::-webkit-scrollbar-thumb:hover {
   background: #D4AF37;
 }
+

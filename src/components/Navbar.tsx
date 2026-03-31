@@ -14,7 +14,7 @@ interface NavbarProps {
   hasStarted: boolean;
 }
 
-const SECTIONS = ["Who", "Work", "Stack", "About", "Contact"];
+const SECTIONS = ["Who", "Work", "Stack", "About", "Writing", "Contact"];
 
 export default function Navbar({ activeSection, onSectionChange, hasStarted }: NavbarProps) {
   return (

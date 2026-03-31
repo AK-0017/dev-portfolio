@@ -15,7 +15,7 @@ const CARDS = [
   },
   {
     title: "Builder",
-    content: "Heavy-lift drone targeting 1kg payload, ZD550 frame, Pixhawk 6X, Raspberry Pi 5 + AI Hat. Going to international expo.",
+    content: "Heavy-lift drone targeting 1kg payload, drone frame, Pixhawk 6X, Raspberry Pi 5 + AI Hat. Going to international expo.",
     gridClass: "md:col-span-1",
   },
   {

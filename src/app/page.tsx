@@ -12,8 +12,9 @@ import About from "@/components/sections/About";
 import Contact from "@/components/sections/Contact";
 import Footer from "@/components/Footer";
 import Intro from "@/components/Intro";
+import Writing from "@/components/sections/Writing";
 
-const SECTIONS = ["Who", "Work", "Stack", "About", "Contact"];
+const SECTIONS = ["Who", "Work", "Stack", "About", "Writing", "Contact"];
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState("who");
@@ -79,6 +80,7 @@ export default function Home() {
               <section id="work"><Work /></section>
               <section id="stack"><Stack /></section>
               <section id="about"><About /></section>
+              <section id="writing"><Writing /></section>
               <section id="contact"><Contact /></section>
             </div>
 

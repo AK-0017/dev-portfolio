@@ -4,10 +4,10 @@ import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 
 const SOCIALS = [
-  { label: "Github", href: "https://github.com/atharva-kulkarni" },
-  { label: "Linkedin", href: "https://linkedin.com/in/atharva-kulkarni" },
-  { label: "Twitter", href: "https://twitter.com/atharva-kulkarni" },
-  { label: "Instagram", href: "https://instagram.com/atharva-kulkarni" },
+  { label: "LinkedIn", href: "https://linkedin.com/in/atharva-kulkarni-1087b4333" },
+  { label: "Github", href: "https://github.com/ak-0017" },
+  { label: "Instagram", href: "https://instagram.com/ak_mere_khwab" },
+  { label: "Email", href: "mailto:atharvakulkarni211@gmail.com" },
 ];
 
 export default function Footer() {

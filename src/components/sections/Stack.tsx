@@ -11,13 +11,17 @@ const ICON_MAP: Record<string, any> = {
 
 export default function Stack() {
   const [categories, setCategories] = useState<StackCategory[]>([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    setLoading(true);
     fetch("/api/stack")
       .then(res => res.json())
       .then(data => {
         if (Array.isArray(data)) setCategories(data);
-      });
+      })
+      .catch(err => console.error(err))
+      .finally(() => setLoading(false));
   }, []);
 
   const renderIcon = (iconName: string) => {
@@ -42,7 +46,30 @@ export default function Stack() {
         </motion.h3>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-24">
-          {categories.map((cat, idx) => (
+          {loading ? (
+            [1, 2, 3].map(i => (
+              <div key={i} className="space-y-12">
+                <div className="flex items-center gap-6">
+                  <div className="w-16 h-16 bg-white/10 rounded-2xl animate-pulse relative overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer" />
+                  </div>
+                  <div className="h-10 w-48 bg-white/10 rounded-lg animate-pulse relative overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer" />
+                  </div>
+                </div>
+                <div className="space-y-12">
+                  {[1, 2, 3, 4].map(j => (
+                    <div key={j} className="space-y-4" style={{ opacity: 1 - j * 0.15 }}>
+                      <div className="flex justify-between h-5 w-full bg-white/5 rounded animate-pulse relative overflow-hidden">
+                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent animate-shimmer" />
+                      </div>
+                      <div className="h-[2px] bg-white/10 w-full rounded-full overflow-hidden" />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))
+          ) : categories.map((cat, idx) => (
             <motion.div
               key={cat.title}
               initial={{ opacity: 0, y: 20 }}

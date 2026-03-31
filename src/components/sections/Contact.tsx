@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useMotionValue, useTransform } from "framer-motion";
 import { ArrowUpRight, Terminal, Wifi, ShieldCheck, Mail } from "lucide-react";
 
@@ -10,7 +10,15 @@ export default function Contact() {
   const [systemLog, setSystemLog] = useState<string[]>(["SIGNAL_STRENGTH: OPTIMAL", "PROTOCOL: SECURE_END_TO_END"]);
 
   const [copied, setCopied] = useState(false);
+  const [settings, setSettings] = useState({ isAvailable: true, resumeUrl: "" });
   const cardRef = useRef<HTMLDivElement>(null);
+  
+  useEffect(() => {
+    fetch("/api/settings")
+      .then(res => res.json())
+      .then(data => setSettings({ isAvailable: data.isAvailable, resumeUrl: data.resumeUrl }))
+      .catch(err => console.error(err));
+  }, []);
   
   // Holographic Glare Logic
   const mouseX = useMotionValue(0);
@@ -27,7 +35,7 @@ export default function Contact() {
   };
 
   const copyEmail = () => {
-    navigator.clipboard.writeText("atharva@dev.studio");
+    navigator.clipboard.writeText("atharvakulkarni211@gmail.com");
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
     setSystemLog(prev => [...prev, "CLIPBOARD_ACCESS: SUCCESS", "PACKET_COPIED"]);
@@ -187,22 +195,58 @@ export default function Contact() {
               <div className="relative z-30">
                 <h4 className="text-4xl md:text-5xl font-display mb-6 uppercase leading-none">ATHARVA <br /> KULKARNI</h4>
                 <div className="flex items-center gap-4 mb-16">
-                  <span className="text-[10px] font-mono text-gold uppercase tracking-[0.5em] px-3 py-1 bg-gold/10 rounded-full border border-gold/20">Founder / AuthVerse</span>
-                  <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
+                  <span className="text-[10px] font-mono text-gold uppercase tracking-[0.5em] px-3 py-1 bg-gold/10 rounded-full border border-gold/20">
+                    {settings.isAvailable ? "Open To Opportunities" : "Currently Building"}
+                  </span>
+                  <div className={`w-1.5 h-1.5 rounded-full animate-pulse ${settings.isAvailable ? 'bg-green-500 shadow-[0_0_10px_#22c55e]' : 'bg-red-500 shadow-[0_0_10px_#ef4444]'}`} />
                 </div>
 
-                <button 
-                  onClick={copyEmail}
-                  className="w-full p-6 bg-white/[0.03] border border-white/5 rounded-2xl flex items-center justify-between group hover:border-gold/30 transition-all text-left"
-                >
-                  <div className="flex flex-col items-start gap-1">
-                    <span className="text-[9px] font-mono text-gold/60 uppercase">Primary Email</span>
-                    <span className="text-lg font-display tracking-tight uppercase">atharvakulkarni211@gmail.com</span>
-                  </div>
-                  <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-gold group-hover:text-black transition-colors">
-                    <ArrowUpRight className="w-4 h-4" />
-                  </div>
-                </button>
+                <div className="flex flex-col gap-4">
+                  <button 
+                    onClick={copyEmail}
+                    className="w-full p-6 bg-white/[0.03] border border-white/5 rounded-2xl flex items-center justify-between group hover:border-gold/30 transition-all text-left"
+                  >
+                    <div className="flex flex-col items-start gap-1">
+                      <span className="text-[9px] font-mono text-gold/60 uppercase">Primary Email</span>
+                      <span className="text-lg font-display tracking-tight uppercase">atharvakulkarni211@gmail.com</span>
+                    </div>
+                    <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-gold group-hover:text-black transition-colors">
+                      <ArrowUpRight className="w-4 h-4" />
+                    </div>
+                  </button>
+
+                  <a 
+                    href="https://linkedin.com/in/atharva-kulkarni-1087b4333"
+                    target="_blank"
+                    className="w-full p-6 bg-white/[0.03] border border-white/5 rounded-2xl flex items-center justify-between group hover:border-gold/30 transition-all text-left"
+                  >
+                    <div className="flex flex-col items-start gap-1">
+                      <span className="text-[9px] font-mono text-gold/60 uppercase">Professional Network</span>
+                      <span className="text-lg font-display tracking-tight uppercase">LinkedIn Profile</span>
+                    </div>
+                    <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center group-hover:bg-gold group-hover:text-black transition-colors">
+                      <ArrowUpRight className="w-4 h-4" />
+                    </div>
+                  </a>
+
+                  {settings.resumeUrl && (
+                    <motion.a 
+                      href={settings.resumeUrl}
+                      target="_blank"
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="w-full p-6 bg-gold/[0.03] border border-gold/10 rounded-2xl flex items-center justify-between group hover:border-gold/40 transition-all text-left"
+                    >
+                      <div className="flex flex-col items-start gap-1">
+                        <span className="text-[9px] font-mono text-gold uppercase">Credentials_Manifest</span>
+                        <span className="text-lg font-display tracking-tight uppercase">Download Dossier</span>
+                      </div>
+                      <div className="w-10 h-10 rounded-full bg-gold/10 text-gold flex items-center justify-center group-hover:bg-gold group-hover:text-black transition-colors border border-gold/20">
+                        <ArrowUpRight className="w-4 h-4" />
+                      </div>
+                    </motion.a>
+                  )}
+                </div>
               </div>
 
               <AnimatePresence>
