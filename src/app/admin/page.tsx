@@ -345,103 +345,108 @@ export default function AdminPage() {
   };
 
   if (!authorized) {
-    return (
-      <div className="min-h-screen bg-black flex items-center justify-center p-6 bg-[radial-gradient(circle_at_center,rgba(255,184,0,0.05)_0%,transparent_70%)]">
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          className="max-w-md w-full bg-white/[0.02] border border-white/10 rounded-3xl p-12 backdrop-blur-xl relative overflow-hidden"
-        >
-          <div className="absolute top-0 left-0 w-full h-1 bg-gold/20" />
-          <div className="flex flex-col items-center gap-8">
-            <div className="w-16 h-16 bg-gold/10 border border-gold/30 rounded-2xl flex items-center justify-center text-gold">
-              <ShieldAlert size={32} />
-            </div>
-            <div className="text-center space-y-2">
-              <h1 className="text-xl font-display uppercase tracking-widest text-white">System Authorization</h1>
-              <p className="text-[10px] font-mono text-white/30 uppercase tracking-[0.2em]">Restricted Access / Level 01</p>
-            </div>
-            
-            <form onSubmit={handleAuthorize} className="w-full space-y-6">
-              <div className="space-y-2">
-                <label className="text-[10px] font-mono uppercase text-white/20 tracking-widest block ml-2">Access_Token</label>
-                <div className="relative">
-                  <input 
-                    type="password" 
-                    value={passcode}
-                    onChange={(e) => setPasscode(e.target.value)}
-                    placeholder="••••••••••••"
-                    className="w-full bg-black border border-white/10 rounded-xl px-6 py-4 font-mono text-center tracking-[0.5em] focus:border-gold outline-none transition-all placeholder:text-white/5"
-                  />
-                  <Lock className="absolute right-4 top-1/2 -translate-y-1/2 text-white/10" size={16} />
-                </div>
-              </div>
-              {error && <p className="text-red-500 font-mono text-[9px] uppercase text-center animate-pulse">{error}</p>}
-              <button type="submit" className="w-full h-14 bg-gold text-black rounded-xl font-mono text-xs uppercase tracking-widest hover:bg-white transition-all flex items-center justify-center gap-2">
-                Initialize Login
-              </button>
-            </form>
-          </div>
-        </motion.div>
-      </div>
-    );
-  }
+     return (
+       <div className="min-h-screen bg-black flex items-center justify-center p-4 md:p-6 bg-[radial-gradient(circle_at_center,rgba(255,184,0,0.05)_0%,transparent_70%)]">
+         <motion.div 
+           initial={{ opacity: 0, scale: 0.9 }}
+           animate={{ opacity: 1, scale: 1 }}
+           className="max-w-md w-full bg-white/[0.02] border border-white/10 rounded-3xl p-8 md:p-12 backdrop-blur-xl relative overflow-hidden"
+         >
+           <div className="absolute top-0 left-0 w-full h-1 bg-gold/20" />
+           <div className="flex flex-col items-center gap-6 md:gap-8">
+             <div className="w-16 h-16 bg-gold/10 border border-gold/30 rounded-2xl flex items-center justify-center text-gold">
+               <ShieldAlert size={32} />
+             </div>
+             <div className="text-center space-y-2">
+               <h1 className="text-xl font-display uppercase tracking-widest text-white">System Authorization</h1>
+               <p className="text-[10px] font-mono text-white/30 uppercase tracking-[0.2em]">Restricted Access / Level 01</p>
+             </div>
+             
+             <form onSubmit={handleAuthorize} className="w-full space-y-6">
+               <div className="space-y-2">
+                 <label className="text-[10px] font-mono uppercase text-white/20 tracking-widest block ml-2">Access_Token</label>
+                 <div className="relative">
+                   <input 
+                     type="password" 
+                     value={passcode}
+                     onChange={(e) => setPasscode(e.target.value)}
+                     placeholder="••••••••••••"
+                     className="w-full bg-black border border-white/10 rounded-xl px-4 md:px-6 py-4 font-mono text-center tracking-[0.3em] md:tracking-[0.5em] focus:border-gold outline-none transition-all placeholder:text-white/5"
+                   />
+                   <Lock className="absolute right-4 top-1/2 -translate-y-1/2 text-white/10" size={16} />
+                 </div>
+               </div>
+               {error && <p className="text-red-500 font-mono text-[9px] uppercase text-center animate-pulse">{error}</p>}
+               <button type="submit" className="w-full h-14 bg-gold text-black rounded-xl font-mono text-xs uppercase tracking-widest hover:bg-white transition-all flex items-center justify-center gap-2">
+                 Initialize Login
+               </button>
+             </form>
+           </div>
+         </motion.div>
+       </div>
+     );
+   }
+ 
+   return (
+     <div className="min-h-screen bg-black text-white font-sans selection:bg-gold/30">
+       <Script src="https://upload-widget.cloudinary.com/global/all.js" strategy="afterInteractive" />
+       
+       {/* Cinematic Header */}
+       <div className="border-b border-white/5 bg-black/50 backdrop-blur-xl sticky top-0 z-50">
+         <div className="max-w-7xl mx-auto px-4 md:px-6 py-4 md:h-20 flex flex-col md:flex-row items-center justify-between gap-4 md:gap-0">
+           <div className="flex items-center gap-4 w-full md:w-auto justify-between md:justify-start">
+             <div className="flex items-center gap-4">
+               <div className="w-8 h-8 bg-gold/10 border border-gold/20 flex items-center justify-center rounded">
+                 <Terminal size={16} className="text-gold" />
+               </div>
+               <h1 className="text-lg md:text-xl font-display uppercase tracking-widest">Control <span className="text-gold">Center</span></h1>
+             </div>
+             <button onClick={() => setAuthorized(false)} className="md:hidden p-2 text-white/20 hover:text-red-500 transition-colors">
+               <Unlock size={18} />
+             </button>
+           </div>
+ 
+           <div className="flex items-center gap-4 md:gap-8 w-full md:w-auto">
+             <div className="flex bg-white/5 p-1 rounded-lg border border-white/10 w-full md:w-auto overflow-x-auto no-scrollbar">
+               <button 
+                 onClick={() => setActiveTab("projects")}
+                 className={`flex-1 md:flex-none px-3 md:px-4 py-1.5 rounded-md text-[9px] md:text-[10px] font-mono uppercase tracking-widest transition-all whitespace-nowrap ${activeTab === "projects" ? "bg-gold text-black" : "text-white/40 hover:text-white"}`}
+               >
+                 Projects
+               </button>
+               <button 
+                 onClick={() => setActiveTab("stack")}
+                 className={`flex-1 md:flex-none px-3 md:px-4 py-1.5 rounded-md text-[9px] md:text-[10px] font-mono uppercase tracking-widest transition-all whitespace-nowrap ${activeTab === "stack" ? "bg-gold text-black" : "text-white/40 hover:text-white"}`}
+               >
+                 Stack
+               </button>
+               <button 
+                 onClick={() => setActiveTab("communication")}
+                 className={`flex-1 md:flex-none px-3 md:px-4 py-1.5 rounded-md text-[9px] md:text-[10px] font-mono uppercase tracking-widest transition-all whitespace-nowrap ${activeTab === "communication" ? "bg-gold text-black" : "text-white/40 hover:text-white"}`}
+               >
+                 Comms
+               </button>
+               <button 
+                 onClick={() => setActiveTab("library")}
+                 className={`flex-1 md:flex-none px-3 md:px-4 py-1.5 rounded-md text-[9px] md:text-[10px] font-mono uppercase tracking-widest transition-all whitespace-nowrap ${activeTab === "library" ? "bg-gold text-black" : "text-white/40 hover:text-white"}`}
+               >
+                 Writing
+               </button>
+               <button 
+                 onClick={() => setActiveTab("system")}
+                 className={`flex-1 md:flex-none px-3 md:px-4 py-1.5 rounded-md text-[9px] md:text-[10px] font-mono uppercase tracking-widest transition-all whitespace-nowrap ${activeTab === "system" ? "bg-gold text-black" : "text-white/40 hover:text-white"}`}
+               >
+                 System
+               </button>
+             </div>
+             <button onClick={() => setAuthorized(false)} className="hidden md:flex px-4 py-2 bg-white/5 border border-white/10 rounded-lg font-mono text-[10px] uppercase tracking-widest hover:bg-white/10 transition-all items-center gap-2">
+               <Unlock size={12} /> Logout
+             </button>
+           </div>
+         </div>
+       </div>
 
-  return (
-    <div className="min-h-screen bg-black text-white font-sans selection:bg-gold/30">
-      <Script src="https://upload-widget.cloudinary.com/global/all.js" strategy="afterInteractive" />
-      
-      {/* Cinematic Header */}
-      <div className="border-b border-white/5 bg-black/50 backdrop-blur-xl sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <div className="w-8 h-8 bg-gold/10 border border-gold/20 flex items-center justify-center rounded">
-              <Terminal size={16} className="text-gold" />
-            </div>
-            <h1 className="text-xl font-display uppercase tracking-widest">Control <span className="text-gold">Center</span></h1>
-          </div>
-
-          <div className="flex items-center gap-8">
-            <div className="flex bg-white/5 p-1 rounded-lg border border-white/10">
-              <button 
-                onClick={() => setActiveTab("projects")}
-                className={`px-4 py-1.5 rounded-md text-[10px] font-mono uppercase tracking-widest transition-all ${activeTab === "projects" ? "bg-gold text-black" : "text-white/40 hover:text-white"}`}
-              >
-                Projects
-              </button>
-              <button 
-                onClick={() => setActiveTab("stack")}
-                className={`px-4 py-1.5 rounded-md text-[10px] font-mono uppercase tracking-widest transition-all ${activeTab === "stack" ? "bg-gold text-black" : "text-white/40 hover:text-white"}`}
-              >
-                Stack
-              </button>
-              <button 
-                onClick={() => setActiveTab("communication")}
-                className={`px-4 py-1.5 rounded-md text-[10px] font-mono uppercase tracking-widest transition-all ${activeTab === "communication" ? "bg-gold text-black" : "text-white/40 hover:text-white"}`}
-              >
-                Comms
-              </button>
-              <button 
-                onClick={() => setActiveTab("library")}
-                className={`px-4 py-1.5 rounded-md text-[10px] font-mono uppercase tracking-widest transition-all ${activeTab === "library" ? "bg-gold text-black" : "text-white/40 hover:text-white"}`}
-              >
-                Writing
-              </button>
-              <button 
-                onClick={() => setActiveTab("system")}
-                className={`px-4 py-1.5 rounded-md text-[10px] font-mono uppercase tracking-widest transition-all ${activeTab === "system" ? "bg-gold text-black" : "text-white/40 hover:text-white"}`}
-              >
-                System
-              </button>
-            </div>
-            <button onClick={() => setAuthorized(false)} className="px-4 py-2 bg-white/5 border border-white/10 rounded-lg font-mono text-[10px] uppercase tracking-widest hover:bg-white/10 transition-all flex items-center gap-2">
-              <Unlock size={12} /> Logout
-            </button>
-          </div>
-        </div>
-      </div>
-
-      <main className="max-w-7xl mx-auto px-6 py-12">
+      <main className="max-w-7xl mx-auto px-4 md:px-6 py-8 md:py-12">
         {activeTab === "projects" && (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <section className="space-y-8 h-fit lg:sticky lg:top-32">
@@ -456,7 +461,7 @@ export default function AdminPage() {
                 )}
               </div>
 
-              <div className="bg-white/5 border border-white/5 p-8 rounded-2xl space-y-6 max-h-[70vh] overflow-y-auto custom-scrollbar pr-4">
+              <div className="bg-white/5 border border-white/5 p-6 md:p-8 rounded-2xl space-y-6 md:max-h-[70vh] md:overflow-y-auto custom-scrollbar pr-2 md:pr-4">
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-1">
                     <label className="text-[9px] font-mono uppercase text-white/20 tracking-wider">ID_Key (Numeric)</label>
@@ -608,7 +613,7 @@ export default function AdminPage() {
                 )}
               </div>
 
-              <div className="bg-white/5 border border-white/5 p-8 rounded-2xl space-y-6">
+              <div className="bg-white/5 border border-white/5 p-6 md:p-8 rounded-2xl space-y-6">
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-1">
                     <label className="text-[9px] font-mono uppercase text-white/20 tracking-wider">Index_ID</label>
@@ -725,16 +730,16 @@ export default function AdminPage() {
                     key={msg._id}
                     initial={{ opacity: 0, y: 10 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="bg-white/5 border border-white/10 p-8 rounded-3xl group relative overflow-hidden"
+                    className="bg-white/5 border border-white/10 p-6 md:p-8 rounded-3xl group relative overflow-hidden"
                   >
                     <div className="absolute top-0 left-0 w-full h-1 bg-gold/10" />
-                    <div className="flex justify-between items-start mb-6">
+                    <div className="flex flex-col sm:flex-row justify-between items-start gap-4 mb-6">
                       <div className="flex-1 pr-4">
                         <span className="text-[9px] font-mono text-gold uppercase tracking-[0.2em] mb-1 block">Transmission_Identity: {msg._id?.slice(-6).toUpperCase()}</span>
                         <h3 className="text-2xl font-display uppercase tracking-tight">{msg.name}</h3>
                         <p className="text-[10px] font-mono text-white/40 uppercase tracking-widest italic">{msg.email}</p>
                       </div>
-                      <button onClick={() => msg._id && handleDeleteComm(msg._id)} className="p-3 bg-red-500/10 text-red-500 rounded-xl border border-red-500/20 opacity-0 group-hover:opacity-100 transition-all flex-shrink-0">
+                      <button onClick={() => msg._id && handleDeleteComm(msg._id)} className="p-3 bg-red-500/10 text-red-500 rounded-xl border border-red-500/20 md:opacity-0 group-hover:opacity-100 transition-all flex-shrink-0">
                         <Trash2 size={16} />
                       </button>
                     </div>
@@ -840,7 +845,7 @@ export default function AdminPage() {
                 )}
               </div>
 
-              <div className="bg-white/5 border border-white/5 p-8 rounded-2xl space-y-6">
+              <div className="bg-white/5 border border-white/5 p-6 md:p-8 rounded-2xl space-y-6">
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-1">
                     <label className="text-[9px] font-mono uppercase text-white/20 tracking-wider">Index_ID</label>
