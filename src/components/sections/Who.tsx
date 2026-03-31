@@ -28,8 +28,8 @@ export default function Who() {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex flex-col justify-between items-center px-6 md:px-24 pt-8 pb-48 max-w-7xl mx-auto overflow-hidden">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gold/5 rounded-full blur-[120px] pointer-events-none" />
+    <section className="relative min-h-screen flex flex-col justify-between items-center px-4 md:px-24 pt-16 md:pt-8 pb-32 md:pb-48 max-w-7xl mx-auto overflow-hidden">
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] md:w-[800px] h-[300px] md:h-[800px] bg-gold/5 rounded-full blur-[80px] md:blur-[120px] pointer-events-none" />
 
       {/* Live Data Ticker - Top Anchored */}
       <motion.div 
@@ -58,7 +58,7 @@ export default function Who() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-          className="text-[14vw] md:text-[9rem] font-display leading-[0.8] tracking-tighter"
+          className="text-[clamp(3.5rem,15vw,9rem)] font-display leading-[0.8] tracking-tighter"
         >
           I <span className="text-transparent" style={{ WebkitTextStroke: "1px rgba(255,255,255,0.3)" }}>BUILD</span> THINGS <br />
           THAT <span className="text-gold italic">SHIP.</span>
@@ -68,16 +68,16 @@ export default function Who() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.2 }}
-          className="mt-12 max-w-2xl text-lg md:text-2xl text-foreground/50 leading-tight font-sans"
+          className="mt-8 md:mt-12 max-w-2xl text-base md:text-2xl text-foreground/50 leading-tight font-sans px-4 md:px-0"
         >
-          Full-stack developer and founder based in Mumbai. <br className="hidden md:block" />
+          Full-stack developer and founder based in Mumbai. <br className="hidden sm:block" />
           I don&apos;t have side projects. I have <span className="text-foreground">parallel ambitions.</span>
         </motion.p>
       </div>
 
       {/* Ambitions & Tags - Bottom Anchored */}
-      <div className="relative z-10 w-full flex flex-col items-center gap-16">
-        <div className="w-full grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-0">
+      <div className="relative z-10 w-full flex flex-col items-center gap-12 md:gap-16">
+        <div className="w-full grid grid-cols-2 lg:grid-cols-4 gap-y-8 md:gap-0">
           {[
             { label: "Founder", val: "AuthVerse" },
             { label: "Developer", val: "BYKBangles" },
@@ -89,7 +89,7 @@ export default function Who() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 + i * 0.1 }}
-              className={`flex flex-col items-center md:items-start md:px-12 ${i !== 0 ? "md:border-l border-white/5" : ""}`}
+              className={`flex flex-col items-center md:items-start md:px-12 ${i !== 0 && i % 2 !== 0 ? "sm:border-l border-white/5" : ""} ${i >= 2 ? "lg:border-l border-white/5" : ""}`}
             >
               <span className="text-[10px] font-mono text-gold/60 uppercase tracking-widest mb-2">{item.label}</span>
               <span className="text-xl font-display text-foreground/90">{item.val}</span>

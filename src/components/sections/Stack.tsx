@@ -45,7 +45,7 @@ export default function Stack() {
           TECHNICAL / <span className="text-gold">CORE</span>
         </motion.h3>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-24">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12 md:gap-24">
           {loading ? (
             [1, 2, 3].map(i => (
               <div key={i} className="space-y-12">

@@ -34,7 +34,7 @@ export default function ProjectDossier({ project, onClose }: ProjectDossierProps
             initial={{ scale: 0.95, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             exit={{ scale: 0.95, opacity: 0 }}
-            className="relative w-full h-full max-h-[90vh] max-w-[95vw] lg:max-w-7xl bg-black border border-white/5 rounded-[3rem] overflow-y-auto scrollbar-hide shadow-[0_0_100px_rgba(0,0,0,1)] flex flex-col"
+            className="relative w-full h-full md:max-h-[90vh] md:max-w-[95vw] lg:max-w-7xl bg-black border-t md:border border-white/5 md:rounded-[3rem] overflow-y-auto scrollbar-hide shadow-[0_0_100px_rgba(0,0,0,1)] flex flex-col"
           >
             {/* Control Bar */}
             <div className="sticky top-0 z-[210] flex items-center justify-between p-8 bg-black/50 backdrop-blur-xl border-b border-white/5">
@@ -54,7 +54,7 @@ export default function ProjectDossier({ project, onClose }: ProjectDossierProps
               {/* HERO HEADER */}
               <div className="flex flex-col lg:flex-row justify-between items-start gap-12">
                 <div className="max-w-3xl space-y-8">
-                  <h2 className="text-6xl md:text-9xl font-display uppercase leading-[0.8] tracking-tighter">
+                  <h2 className="text-4xl sm:text-6xl md:text-9xl font-display uppercase leading-[0.8] tracking-tighter">
                     {project.title.split(' ')[0]} <br />
                     <span className="text-transparent italic" style={{ WebkitTextStroke: "1px rgba(255,184,0,0.5)" }}>
                       {project.title.split(' ').slice(1).join(' ')}
@@ -134,13 +134,13 @@ export default function ProjectDossier({ project, onClose }: ProjectDossierProps
                     <h3 className="text-4xl md:text-6xl font-display uppercase">Operational <span className="text-gold italic">Stability</span></h3>
                     <span className="text-[10px] font-mono text-white/20 uppercase tracking-[0.4em] hidden md:block">Engineering_Log_012</span>
                   </div>
-                  <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
                     {project.metrics.map((metric, i) => (
-                      <div key={i} className="space-y-4 p-8 bg-white/[0.02] border border-white/5 rounded-2xl group hover:border-gold/30 transition-colors">
+                      <div key={i} className="space-y-4 p-6 md:p-8 bg-white/[0.02] border border-white/5 rounded-2xl group hover:border-gold/30 transition-colors">
                         <span className="text-[10px] font-mono text-white/20 uppercase tracking-widest">{metric.label}</span>
                         <div className="flex items-baseline gap-2">
-                           <span className="text-6xl font-display group-hover:text-gold transition-colors">{metric.value}</span>
-                           <span className="text-sm font-mono text-white/20 uppercase">{metric.unit}</span>
+                           <span className="text-4xl md:text-6xl font-display group-hover:text-gold transition-colors">{metric.value}</span>
+                           <span className="text-[9px] md:text-sm font-mono text-white/20 uppercase">{metric.unit}</span>
                         </div>
                       </div>
                     ))}
