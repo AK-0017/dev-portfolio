@@ -765,17 +765,17 @@ export default function AdminPage() {
               <Zap size={14} /> Global_System_Protocols
             </h2>
 
-            <div className="bg-white/5 border border-white/10 p-12 rounded-[2.5rem] space-y-12 shadow-2xl relative overflow-hidden">
+            <div className="bg-white/5 border border-white/10 p-6 md:p-12 rounded-[2.5rem] space-y-8 md:space-y-12 shadow-2xl relative overflow-hidden">
               <div className="absolute top-0 left-0 w-full h-1 bg-gold/30" />
               
-              <div className="flex items-center justify-between p-8 bg-black/40 border border-white/5 rounded-3xl group hover:border-gold/20 transition-all">
-                <div>
-                  <h3 className="text-xl font-display uppercase tracking-widest">Availability_Protocol</h3>
-                  <p className="text-[10px] font-mono text-white/30 uppercase mt-1 tracking-widest">Control real-time recruiter visibility</p>
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between p-6 md:p-8 bg-black/40 border border-white/5 rounded-3xl group hover:border-gold/20 transition-all gap-4">
+                <div className="text-center sm:text-left">
+                  <h3 className="text-lg md:text-xl font-display uppercase tracking-widest">Availability_Protocol</h3>
+                  <p className="text-[9px] md:text-[10px] font-mono text-white/30 uppercase mt-1 tracking-widest">Control real-time recruiter visibility</p>
                 </div>
                 <button 
                   onClick={() => setSettings({...settings, isAvailable: !settings.isAvailable})}
-                  className={`w-20 h-10 rounded-full relative transition-all duration-500 p-1 ${settings.isAvailable ? 'bg-green-500' : 'bg-red-500/20 border border-red-500/30'}`}
+                  className={`w-20 h-10 rounded-full relative transition-all duration-500 p-1 flex-shrink-0 ${settings.isAvailable ? 'bg-green-500' : 'bg-red-500/20 border border-red-500/30'}`}
                 >
                   <motion.div 
                     animate={{ x: settings.isAvailable ? 40 : 2 }}
@@ -796,24 +796,24 @@ export default function AdminPage() {
                     value={settings.resumeUrl || ""}
                     onChange={(e) => setSettings({...settings, resumeUrl: e.target.value})}
                     placeholder="ENTER CLOUDINARY_VAULT_URL..."
-                    className="w-full bg-black/60 border border-white/10 rounded-2xl px-8 py-6 font-mono text-xs focus:border-gold outline-none transition-all placeholder:text-white/5"
+                    className="w-full bg-black/60 border border-white/10 rounded-2xl px-6 md:px-8 py-4 md:py-6 font-mono text-[10px] md:text-xs focus:border-gold outline-none transition-all placeholder:text-white/5"
                   />
-                  <div className="absolute right-6 top-1/2 -translate-y-1/2 opacity-20">
+                  <div className="absolute right-6 top-1/2 -translate-y-1/2 opacity-20 hidden md:block">
                     <ShieldAlert size={20} />
                   </div>
                 </div>
               </div>
 
-              <div className="pt-12 border-t border-white/5 flex flex-col gap-6">
-                <div className="flex items-center gap-4 text-red-500/40 p-4 border border-red-500/10 rounded-2xl bg-red-500/[0.02]">
-                  <AlertTriangle size={24} />
-                  <div>
+              <div className="pt-8 md:pt-12 border-t border-white/5 flex flex-col gap-6">
+                <div className="flex flex-col sm:flex-row items-center gap-4 text-red-500/40 p-4 md:p-6 border border-red-500/10 rounded-2xl bg-red-500/[0.02]">
+                  <AlertTriangle size={24} className="flex-shrink-0" />
+                  <div className="text-center sm:text-left">
                     <h4 className="text-[10px] font-mono uppercase tracking-widest font-bold">Security_Warning</h4>
                     <p className="text-[9px] font-mono uppercase tracking-widest">Permanent data purge will destroy all dossiers</p>
                   </div>
                   <button 
                     onClick={handleSecurityPurge}
-                    className="ml-auto px-4 py-2 border border-red-500/20 rounded-lg text-[9px] font-mono uppercase text-red-500 hover:bg-red-500 hover:text-white transition-all"
+                    className="w-full sm:w-auto sm:ml-auto px-4 py-2 border border-red-500/20 rounded-lg text-[9px] font-mono uppercase text-red-500 hover:bg-red-500 hover:text-white transition-all"
                   >
                     INITIALIZE_PURGE
                   </button>
@@ -822,10 +822,10 @@ export default function AdminPage() {
                 <button 
                   onClick={handleSaveSettings}
                   disabled={savingSettings}
-                  className="w-full h-20 bg-gold text-black rounded-3xl font-mono text-xs uppercase tracking-[0.6em] font-bold hover:bg-white transition-all shadow-[0_20px_50px_rgba(255,184,0,0.1)] group flex items-center justify-center gap-4"
+                  className="w-full h-16 md:h-20 bg-gold text-black rounded-3xl font-mono text-xs uppercase tracking-[0.3em] md:tracking-[0.6em] font-bold hover:bg-white transition-all shadow-[0_20px_50px_rgba(255,184,0,0.1)] group flex items-center justify-center gap-4"
                 >
                   <Save size={18} />
-                  <span>{savingSettings ? "UPDATING_PROTOCOLS..." : "EXECUTE_SYSTEM_SYNC"}</span>
+                  <span>{savingSettings ? "UPDATING..." : "EXECUTE_SYSTEM_SYNC"}</span>
                 </button>
               </div>
             </div>
